@@ -14,7 +14,7 @@ titles = doc.xpath("//div[@class = 'grid-row']//h5[@class = 'margin-top--1']") 	
 dates = doc.xpath("//small[@class = 'text--ellipsis']")							# Store badges' date
 
 while count < titles.length do
-	user_information[titles[count].text] = dates[count].text
+	user_information[titles[count].text.to_sym] = dates[count].text
 	count += 1
 end
 
