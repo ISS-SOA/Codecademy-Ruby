@@ -1,12 +1,12 @@
 require './badges.rb'
 
-puts "Please type the username: "	# Prompt user to type username
-username = gets.chomp
+fail ArgumentError, "Usage:  badges [username]\n" if ARGV.count == 0
+user_name = ARGV[0]
 
-badges_found = CodecademyBadges.get_badges('soumya.ray')
+badges_found = CodecademyBadges.get_badges(user_name)
 
-puts "#{username} has collected #{badges_found.size} badges."
+puts "#{user_name} has collected #{badges_found.size} badges."
 
 badges_found.each do |title, date|
-  puts "Badges '#{title}' on #{date}."
+  puts "Earned '#{title}' on #{date}."
 end

@@ -9,7 +9,6 @@ class CodecademyBadges
 		user_information = integrate(titles, dates)
 	end
 
-	private
 	def self.getHTML(username)
 		url = "http://www.codecademy.com/users/#{username}/achievements"
 		document = Nokogiri::HTML(open(url))
@@ -18,7 +17,7 @@ class CodecademyBadges
 	def self.getTitles(document)
 		document.xpath("//div[@class = 'grid-row']//h5[@class = 'margin-top--1']")
 	end
-	
+
 	def self.getDates(document)
 		document.xpath("//small[@class = 'text--ellipsis']")
 	end
@@ -27,7 +26,7 @@ class CodecademyBadges
 		badges = Hash.new(0)
 		count = 0
 		while count < titles.length do
-			badges[titles[count].text.to_sym] = dates[count].text
+			badges[titles[count].text] = dates[count].text
 			count += 1
 		end
 		badges
