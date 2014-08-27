@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'date'
 
 class CodecademyBadges
 	def self.get_badges(username)
@@ -26,7 +27,7 @@ class CodecademyBadges
 		badges = Hash.new(0)
 		count = 0
 		while count < titles.length do
-			badges[titles[count].text] = dates[count].text
+			badges[titles[count].text] = Date.parse(dates[count].text)
 			count += 1
 		end
 		badges

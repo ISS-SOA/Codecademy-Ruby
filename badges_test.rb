@@ -30,7 +30,7 @@ describe "Get all the badges" do
 
   badge.map do |b_name, b_date|
     it "finds '#{b_name}' badge" do
-      badges_found[b_name].must_equal badge[b_name]
+      badges_found[b_name].must_equal Date.parse(badge[b_name])
     end
   end
 end
