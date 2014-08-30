@@ -28,7 +28,6 @@ module CodeBadges
 
     def self.integrate(titles, dates)
       badges = Hash.new(0)
-      count = 0
       titles.each_with_index do |value, index|
         badges[value.text] = Date.parse(dates[index].text)
       end
