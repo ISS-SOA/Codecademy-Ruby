@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require './badges.rb'
 
 fail ArgumentError, "Usage:  badges [username]\n" if ARGV.count == 0
