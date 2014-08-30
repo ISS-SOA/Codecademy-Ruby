@@ -20,7 +20,7 @@ badge = {
   'First Lesson' => 'Jun 20, 2012'
 }
 
-badges_found = CodecademyBadges.get_badges('soumya.ray')
+badges_found = CodeBadges::CodecademyBadges.get_badges('soumya.ray')
 
 describe "Get all the badges" do
 
