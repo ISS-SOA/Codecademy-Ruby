@@ -1,7 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
-require 'date'
-
 class CodecademyBadges
 	def self.get_badges(username)
 		doc = getHTML(username)
