@@ -10,10 +10,10 @@ Gem::Specification.new do |s|
   s.date        =  '2014-08-30'
   s.summary     =  'Grab the badges information from the Codecademy'
   s.description =  'Use username as an input, automatically give you the badges the user has.'
-  s.authors     =  ['Soumya Ray', 'Lee Chen']
+  s.authors     =  ['Lee Chen', 'Soumya Ray']
   s.email       =  'chung1350@hotmail.com'
   s.files       =  `git ls-files`.split("\n")
   s.test_files  =  `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.homepage    =  ''
+  s.homepage    =  'https://github.com/ISS-SOA/Codecademy-Ruby'
   s.license     =  'MIT'
 end
