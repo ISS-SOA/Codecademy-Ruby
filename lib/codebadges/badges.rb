@@ -5,9 +5,9 @@ module CodeBadges
   # return a hash of user's badges information
   class CodecademyBadges
     def self.get_badges(username)
-      doc = getHTML(username)
-      titles = getTitles(doc)
-      dates = getDates(doc)
+      doc = get_html(username)
+      titles = get_titles(doc)
+      dates = get_dates(doc)
       user_information = integrate(titles, dates)
       user_information
     end
