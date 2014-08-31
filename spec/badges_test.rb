@@ -22,7 +22,7 @@ badge = {
 
 badges_found = CodeBadges::CodecademyBadges.get_badges('soumya.ray')
 
-describe "Get all the badges" do
+describe 'Get all the badges' do
 
   it 'has the right number of badges' do
     badges_found.size.must_equal badge.size
@@ -30,7 +30,7 @@ describe "Get all the badges" do
 
   badge.map do |b_name, b_date|
     it "finds '#{b_name}' badge" do
-      badges_found[b_name].must_equal Date.parse(badge[b_name])
+      badges_found[b_name].must_equal Date.parse(b_date)
     end
   end
 end
