@@ -12,17 +12,17 @@ module CodeBadges
       user_information
     end
 
-    def self.getHTML(username)
+    def self.get_html(username)
       url = "http://www.codecademy.com/users/#{username}/achievements"
       document = Nokogiri::HTML(open(url))
       document
     end
 
-    def self.getTitles(document)
+    def self.get_titles(document)
       document.xpath("//div[@class = 'grid-row']//h5[@class = 'margin-top--1']")
     end
 
-    def self.getDates(document)
+    def self.get_dates(document)
       document.xpath("//small[@class = 'text--ellipsis']")
     end
 
