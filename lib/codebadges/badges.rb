@@ -20,16 +20,18 @@ module CodeBadges
     end
 
     def self.get_titles(document)
-      document.xpath("//div[@class = 'grid-row']//h5[@class = 'margin-top--1']")
+      titles = document.xpath("//div[@class = 'grid-row']//h5[@class = 'margin-top--1']")
+      titles.map { |t| t.text }
     end
 
     def self.get_dates(document)
-      document.xpath("//small[@class = 'text--ellipsis']")
+      dates = document.xpath("//small[@class = 'text--ellipsis']")
+      dates.map { |d| Date.parse(d) }
     end
 
     def self.integrate(titles, dates)
       badge_array = titles.each_with_index.map do |_, index|
-        [titles[index].text, Date.parse(dates[index].text)]
+        [titles[index], dates[index]]
       end
       Hash[badge_array]
     end
