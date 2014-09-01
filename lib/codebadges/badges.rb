@@ -11,14 +11,12 @@ module CodeBadges
       doc = get_html(username)
       titles = get_titles(doc)
       dates = get_dates(doc)
-      user_information = integrate(titles, dates)
-      user_information
+      integrate(titles, dates)
     end
 
     def self.get_html(username)
       url = "http://www.codecademy.com/users/#{username}/achievements"
-      document = Nokogiri::HTML(open(url))
-      document
+      Nokogiri::HTML(open(url))
     end
 
     def self.get_titles(document)
@@ -30,11 +28,10 @@ module CodeBadges
     end
 
     def self.integrate(titles, dates)
-      badges = Hash.new(0)
-      titles.each_with_index do |value, index|
-        badges[value.text] = Date.parse(dates[index].text)
+      badge_array = titles.each_with_index.map do |_, index|
+        [titles[index].text, Date.parse(dates[index].text)]
       end
-      badges
+      Hash[badge_array]
     end
   end
 end
