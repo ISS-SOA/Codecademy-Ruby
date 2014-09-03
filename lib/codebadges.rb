@@ -1,0 +1,1 @@
+require 'codebadges/badges.rb'
