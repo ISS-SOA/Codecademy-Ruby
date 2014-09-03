@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-require File.expand_path('../lib/codebadges', __FILE__)
+require 'codebadges'
 
 fail ArgumentError, "Usage:  badges [username]\n" if ARGV.count == 0
 user_name = ARGV[0]
 
-badges_found = CodecademyBadges.get_badges(user_name)
+badges_found = CodeBadges::CodecademyBadges.get_badges(user_name)
 
 puts "#{user_name} has collected #{badges_found.size} badges."
 
