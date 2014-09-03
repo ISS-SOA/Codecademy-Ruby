@@ -7,34 +7,38 @@ module CodeBadges
   # This class get the user account as an input
   # return a hash of user's badges information
   class CodecademyBadges
+    TITLE_XPATH = "//div[@class = 'grid-row']//h5[@class = 'margin-top--1']"
+    DATE_XPATH  = "//small[@class = 'text--ellipsis']"
+    USERS_URL = 'http://www.codecademy.com/users'
+    ACHIEVEMENTS_DIR = 'achievements'
+
     def self.get_badges(username)
       doc = get_html(username)
       titles = get_titles(doc)
       dates = get_dates(doc)
-      user_information = integrate(titles, dates)
-      user_information
+      integrate(titles, dates)
     end
 
     def self.get_html(username)
-      url = "http://www.codecademy.com/users/#{username}/achievements"
-      document = Nokogiri::HTML(open(url))
-      document
+      url = "#{USERS_URL}/#{username}/#{ACHIEVEMENTS_DIR}"
+      Nokogiri::HTML(open(url))
     end
 
     def self.get_titles(document)
-      document.xpath("//div[@class = 'grid-row']//h5[@class = 'margin-top--1']")
+      titles = document.xpath(TITLE_XPATH)
+      titles.map { |t| t.text }
     end
 
     def self.get_dates(document)
-      document.xpath("//small[@class = 'text--ellipsis']")
+      dates = document.xpath(DATE_XPATH)
+      dates.map { |d| Date.parse(d) }
     end
 
     def self.integrate(titles, dates)
-      badges = Hash.new(0)
-      titles.each_with_index do |value, index|
-        badges[value.text] = Date.parse(dates[index].text)
+      badge_array = titles.each_with_index.map do |_, index|
+        [titles[index], dates[index]]
       end
-      badges
+      Hash[badge_array]
     end
   end
 end
