@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require '../lib/codebadges'
+require File.expand_path('../lib/codebadges', __FILE__)
 
 fail ArgumentError, "Usage:  badges [username]\n" if ARGV.count == 0
 user_name = ARGV[0]
