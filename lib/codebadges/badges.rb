@@ -67,5 +67,3 @@ module CodeBadges
     end
   end
 end
-
-CodeBadges::CodecademyBadges.get_badges_from_file('../../spec/test.txt')
