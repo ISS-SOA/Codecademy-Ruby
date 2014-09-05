@@ -32,7 +32,7 @@ module CodeBadges
       end
       f.close
       users = \
-      users_array.each_with_index.map { |user, _| [user, get_badges(user)] }
+        users_array.each_with_index.map { |user, _| [user, get_badges(user)] }
       Hash[users]
     end
 
