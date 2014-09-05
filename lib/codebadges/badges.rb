@@ -12,6 +12,26 @@ module CodeBadges
     USERS_URL = 'http://www.codecademy.com/users'
     ACHIEVEMENTS_DIR = 'achievements'
 
+    def self.get_badges_from_file(file)
+      badges_found = read_files(file)
+      badges_found.each do |user, badges|
+        puts "#{user} has #{badges[0]} badges"
+        badges[1].each do |title, date|
+          puts "Earned '#{title}' on #{date}."
+        end
+        puts '\n'
+      end
+    end
+
+    def self.read_files(file)
+      f = File.open(file, 'r')
+      users = f.readlines.map { |line| line.gsub("\n", '') }
+      users_badges = users.each_with_index.map do |user, _|
+        [user, [get_badges(user).size, get_badges(user)]]
+      end
+      Hash[users_badges]
+    end
+
     def self.get_badges(username)
       doc = get_html(username)
       titles = get_titles(doc)
