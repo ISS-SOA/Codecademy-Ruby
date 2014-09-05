@@ -30,6 +30,7 @@ module CodeBadges
         next if line.chomp.empty?
         users_array.push(line.gsub("\n", ''))
       end
+      f.close
       users_badges = users_array.each_with_index.map do |user, _|
         [user, get_badges(user)]
       end
