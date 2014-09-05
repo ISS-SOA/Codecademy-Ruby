@@ -31,10 +31,9 @@ module CodeBadges
         users_array.push(line.gsub("\n", ''))
       end
       f.close
-      users_badges = users_array.each_with_index.map do |user, _|
-        [user, get_badges(user)]
-      end
-      Hash[users_badges]
+      users = \
+      users_array.each_with_index.map { |user, _| [user, get_badges(user)] }
+      Hash[users]
     end
 
     def self.get_badges(username)
@@ -67,3 +66,4 @@ module CodeBadges
     end
   end
 end
+CodeBadges::CodecademyBadges.get_badges_from_file('../../spec/test.txt')
