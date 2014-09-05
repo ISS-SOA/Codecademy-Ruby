@@ -13,21 +13,21 @@ module CodeBadges
     ACHIEVEMENTS_DIR = 'achievements'
 
     def self.get_badges_from_file(file)
-      badges_found = read_files(file)
-      badges_found.each do |user, badges|
-        puts "#{user} has #{badges[0]} badges"
-        badges[1].each do |title, date|
+      badges_info = read_file(file)
+      badges_info.each do |user, badges|
+        puts "#{user} has #{badges.size} badges"
+        badges.each do |title, date|
           puts "Earned '#{title}' on #{date}."
         end
-        puts '\n'
+        puts "\n"
       end
     end
 
-    def self.read_files(file)
+    def self.read_file(file)
       f = File.open(file, 'r')
       users = f.readlines.map { |line| line.gsub("\n", '') }
       users_badges = users.each_with_index.map do |user, _|
-        [user, [get_badges(user).size, get_badges(user)]]
+        [user, get_badges(user)]
       end
       Hash[users_badges]
     end
@@ -62,3 +62,5 @@ module CodeBadges
     end
   end
 end
+
+CodeBadges::CodecademyBadges.get_badges_from_file('../../spec/test.txt')
