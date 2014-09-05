@@ -25,8 +25,12 @@ module CodeBadges
 
     def self.read_file(file)
       f = File.open(file, 'r')
-      users = f.readlines.map { |line| line.gsub("\n", '') }
-      users_badges = users.each_with_index.map do |user, _|
+      users_array = []
+      f.each_line.map do |line|
+        next if line.chomp.empty?
+        users_array.push(line.gsub("\n", ''))
+      end
+      users_badges = users_array.each_with_index.map do |user, _|
         [user, get_badges(user)]
       end
       Hash[users_badges]
