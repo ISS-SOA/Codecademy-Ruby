@@ -13,6 +13,13 @@ module CodeBadges
     ACHIEVEMENTS_DIR = 'achievements'
 
     def self.get_badges_from_file(file)
+      users_array = read_file(file)
+      users = \
+        users_array.each_with_index.map { |user, _| [user, get_badges(user)] }
+      Hash[users]
+    end
+
+    def self.read_file(file)
       f = File.open(file, 'r')
       users_array = []
       f.each_line.map do |line|
@@ -20,9 +27,7 @@ module CodeBadges
         users_array.push(line.gsub("\n", ''))
       end
       f.close
-      users = \
-        users_array.each_with_index.map { |user, _| [user, get_badges(user)] }
-      Hash[users]
+      users_array
     end
 
     def self.get_badges(username)
