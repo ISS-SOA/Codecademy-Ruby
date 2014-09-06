@@ -2,13 +2,25 @@
 
 require 'codebadges'
 
-fail ArgumentError, "Usage:  badges [username]\n" if ARGV.count == 0
-user_name = ARGV[0]
+type = ['txt']
+fail ArgumentError, "Usage:  badges [username/file]\n" if ARGV.count == 0
+if type.include? ARGV[0].split('.').last
+  badges_found_from_file = CodeBadges::CodecademyBadges.get_badges_from_file(ARGV[0])
+  badges_found_from_file.each_with_index do |(k, v), _|
+    puts "#{k} has collected #{v.size} badges."
+    v.each do |title, date|
+      puts "Earned '#{title}' on #{date}."
+    end
+    puts "\n"
+  end
+else
+  user_name = ARGV[0]
 
-badges_found = CodeBadges::CodecademyBadges.get_badges(user_name)
+  badges_found = CodeBadges::CodecademyBadges.get_badges(user_name)
 
-puts "#{user_name} has collected #{badges_found.size} badges."
+  puts "#{user_name} has collected #{badges_found.size} badges."
 
-badges_found.each do |title, date|
-  puts "Earned '#{title}' on #{date}."
+  badges_found.each do |title, date|
+    puts "Earned '#{title}' on #{date}."
+  end
 end
