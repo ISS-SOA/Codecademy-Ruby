@@ -13,8 +13,7 @@ module CodeBadges
     ACHIEVEMENTS_DIR = 'achievements'
 
     def self.get_users_badges(users_array)
-      users = \
-        users_array.each_with_index.map { |user, _| [user, get_badges(user)] }
+      users = users_array.map { |user| [user, get_badges(user)] }
       Hash[users]
     end
 
