@@ -1,11 +1,28 @@
 #!/usr/bin/env ruby
 
-require 'codebadges'
+# require '../lib/codebadges/badges.rb'     # for cmd line testing purposes
+require 'codebadges'                       # for production
+
+def get_users_array_from_file(file)
+  users_array = []
+
+  File.open(file, 'r') do |f|
+    f.each_line.map do |line|
+      next if line.chomp.empty?
+      users_array.push(line.gsub("\n", ''))
+    end
+  end
+
+  users_array
+end
 
 type = ['txt']
 fail ArgumentError, "Usage:  badges [username/file]\n" if ARGV.count == 0
 if type.include? ARGV[0].split('.').last
-  badges_found_from_file = CodeBadges::CodecademyBadges.get_badges_from_file(ARGV[0])
+  users_array = get_users_array_from_file(ARGV[0])
+
+  badges_found_from_file = CodeBadges::CodecademyBadges.get_users_badges(users_array)
+
   badges_found_from_file.each_with_index do |(k, v), _|
     puts "#{k} has collected #{v.size} badges."
     v.each do |title, date|

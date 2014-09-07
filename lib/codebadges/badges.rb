@@ -12,22 +12,10 @@ module CodeBadges
     USERS_URL = 'http://www.codecademy.com/users'
     ACHIEVEMENTS_DIR = 'achievements'
 
-    def self.get_badges_from_file(file)
-      users_array = read_file(file)
+    def self.get_users_badges(users_array)
       users = \
         users_array.each_with_index.map { |user, _| [user, get_badges(user)] }
       Hash[users]
-    end
-
-    def self.read_file(file)
-      f = File.open(file, 'r')
-      users_array = []
-      f.each_line.map do |line|
-        next if line.chomp.empty?
-        users_array.push(line.gsub("\n", ''))
-      end
-      f.close
-      users_array
     end
 
     def self.get_badges(username)
