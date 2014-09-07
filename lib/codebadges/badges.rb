@@ -16,7 +16,7 @@ module CodeBadges
       doc = get_html(username)
       titles = get_titles(doc)
       dates = get_dates(doc)
-      integrate(titles, dates)
+      { username => integrate(titles, dates) }
     end
 
     def self.get_html(username)

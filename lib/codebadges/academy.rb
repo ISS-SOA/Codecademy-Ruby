@@ -5,9 +5,9 @@
 module CodeBadges
   # This class handles multiple users information from codecademy
   class Academy
-    def self.get_cadets(users_array)
-      users = users_array.map { |user| [user, CodecademyBadges.get_badges(user)] }
-      Hash[users]
+    def self.get_cadets(usernames_array)
+      users_array = usernames_array.map { |user| CodecademyBadges.get_badges(user) }
+      users_array.reduce Hash.new, :merge
     end
   end
 end
