@@ -4,13 +4,15 @@
 require 'codebadges'                       # for production
 
 def get_users_array_from_file(file)
-  f = File.open(file, 'r')
   users_array = []
-  f.each_line.map do |line|
-    next if line.chomp.empty?
-    users_array.push(line.gsub("\n", ''))
+
+  File.open(file, 'r') do |f|
+    f.each_line.map do |line|
+      next if line.chomp.empty?
+      users_array.push(line.gsub("\n", ''))
+    end
   end
-  f.close
+
   users_array
 end
 
