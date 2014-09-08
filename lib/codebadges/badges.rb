@@ -16,7 +16,8 @@ module CodeBadges
       doc = get_html(username)
       titles = get_titles(doc)
       dates = get_dates(doc)
-      { username => integrate(titles, dates) }
+      { username: username,
+        badges: integrate(titles, dates) }
     end
 
     def self.get_html(username)
@@ -36,9 +37,9 @@ module CodeBadges
 
     def self.integrate(titles, dates)
       badge_array = titles.each_with_index.map do |_, index|
-        [titles[index], dates[index]]
+        { badge: titles[index], date: dates[index] }
       end
-      Hash[badge_array]
+      #Hash[badge_array]
     end
   end
 end

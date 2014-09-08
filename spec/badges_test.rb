@@ -2,23 +2,24 @@ require 'minitest/autorun'
 require 'minitest/rg'
 require './lib/codebadges.rb'
 
-badge = {
-  'Sorting Your Friends' => 'May 18, 2014',
-  '100 Exercises' => 'May 18, 2014',
-  'Max Streak Count of 3' => 'May 11, 2014',
-  'Design a Button for Your Website' => 'May  9, 2014',
-  'CSS: An Overview' => 'May  9, 2014',
-  'Build Your Own Webpage' => 'May  9, 2014',
-  '50 Exercises' => 'May  9, 2014',
-  'Clickable Photo Page' => 'May  9, 2014',
-  'HTML Basics III' => 'May  9, 2014',
-  '25 points earned in one day' => 'May  9, 2014',
-  'HTML Basics' => 'May  9, 2014',
-  '25 Exercises' => 'May  9, 2014',
-  '10 Exercises' => 'Dec 12, 2012',
-  'Max Streak Count of 1' => 'Dec 12, 2012',
-  'First Lesson' => 'Jun 20, 2012'
-}
+cadet_actual = \
+{ username: 'soumya.ray',
+  badges:
+  [{ badge: 'Sorting Your Friends', date: '2014-05-18' },
+   { badge: '100 Exercises', date: '2014-05-18' },
+   { badge: 'Max Streak Count of 3', date: '2014-05-11' },
+   { badge: 'Design a Button for Your Website', date: '2014-05-09' },
+   { badge: 'CSS: An Overview', date: '2014-05-09' },
+   { badge: 'Build Your Own Webpage', date: '2014-05-09' },
+   { badge: '50 Exercises', date: '2014-05-09' },
+   { badge: 'Clickable Photo Page', date: '2014-05-09' },
+   { badge: 'HTML Basics III', date: '2014-05-09' },
+   { badge: '25 points earned in one day', date: '2014-05-09' },
+   { badge: 'HTML Basics', date: '2014-05-09' },
+   { badge: '25 Exercises', date: '2014-05-09' },
+   { badge: '10 Exercises', date: '2012-12-12' },
+   { badge: 'Max Streak Count of 1', date: '2012-12-12' },
+   { badge: 'First Lesson', date: '2012-06-20' }] }
 
 badges_from_file = {
   'soumya.ray' => {
@@ -103,32 +104,34 @@ cadets_found = CodeBadges::Academy.get_cadets(['chenlizhan', 'soumya.ray'])
 
 describe 'Get badges for one user' do
   before do
-    @badges_found = cadet_found['soumya.ray']
+    @badges_found = cadet_found[:badges]
   end
 
   it 'has the right number of badges' do
-    @badges_found.size.must_equal badge.size
+    cadet_found[:badges].size.must_equal cadet_actual[:badges].size
   end
 
-  badge.map do |b_name, b_date|
-    it "finds '#{b_name}' badge" do
-      @badges_found[b_name].must_equal Date.parse(b_date)
+  cadet_actual[:badges].map do |badge_actual|
+    it "should find '#{badge_actual[:badge]}' badge" do
+      results = cadet_found[:badges].select { |b| b[:badge] == badge_actual[:badge] }
+      badge_found = results[0]
+      badge_found[:date].must_equal Date.parse(badge_actual[:date])
     end
   end
 end
 
-describe 'Get badges from multiple users' do
-  it 'has the right number of badges for each users' do
-    cadets_found.each do |user, badges|
-      badges.size.must_equal badges_from_file[user].size
-    end
-  end
-
-  badges_from_file.map do |user, badges|
-    badges.map do |b_name, b_date|
-      it "finds '#{b_name}' badge from '#{user}'" do
-        cadets_found[user][b_name].must_equal Date.parse(b_date)
-      end
-    end
-  end
-end
+# describe 'Get badges from multiple users' do
+#   it 'has the right number of badges for each users' do
+#     cadets_found.each do |user, badges|
+#       badges.size.must_equal badges_from_file[user].size
+#     end
+#   end
+#
+#   badges_from_file.map do |user, badges|
+#     badges.map do |b_name, b_date|
+#       it "finds '#{b_name}' badge from '#{user}'" do
+#         cadets_found[user][b_name].must_equal Date.parse(b_date)
+#       end
+#     end
+#   end
+# end
