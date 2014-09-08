@@ -7,7 +7,7 @@ module CodeBadges
   class Academy
     def self.get_cadets(usernames)
       users_array = usernames.map { |user| CodecademyBadges.get_badges(user) }
-      { 'cadets' => users_array }
+      { cadets: users_array }
     end
   end
 end
