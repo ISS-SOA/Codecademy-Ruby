@@ -21,7 +21,7 @@ fail ArgumentError, "Usage:  badges [username/file]\n" if ARGV.count == 0
 if type.include? ARGV[0].split('.').last
   users_array = get_users_array_from_file(ARGV[0])
 
-  badges_found_from_file = CodeBadges::CodecademyBadges.get_users_badges(users_array)
+  badges_found_from_file = CodeBadges::Academy.get_cadets(users_array)
 
   badges_found_from_file.each_with_index do |(k, v), _|
     puts "#{k} has collected #{v.size} badges."

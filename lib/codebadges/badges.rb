@@ -12,12 +12,6 @@ module CodeBadges
     USERS_URL = 'http://www.codecademy.com/users'
     ACHIEVEMENTS_DIR = 'achievements'
 
-    def self.get_users_badges(users_array)
-      users = \
-        users_array.each_with_index.map { |user, _| [user, get_badges(user)] }
-      Hash[users]
-    end
-
     def self.get_badges(username)
       doc = get_html(username)
       titles = get_titles(doc)

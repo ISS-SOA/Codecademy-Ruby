@@ -99,7 +99,7 @@ badges_from_file = {
 }
 
 badges_found = CodeBadges::CodecademyBadges.get_badges('soumya.ray')
-users_badges_found = CodeBadges::CodecademyBadges.get_users_badges(['chenlizhan', 'soumya.ray'])
+users_badges_found = CodeBadges::Academy.get_cadets(['chenlizhan', 'soumya.ray'])
 
 describe 'Get badges for one user' do
 
