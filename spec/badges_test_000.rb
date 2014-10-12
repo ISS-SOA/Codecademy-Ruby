@@ -3,7 +3,7 @@
 
 require 'minitest/autorun'
 require 'minitest/rg'
-require './badges.rb'
+require './lib/codebadges.rb'
 
 badge = {
   'Sorting Your Friends' => 'May 18, 2014',
