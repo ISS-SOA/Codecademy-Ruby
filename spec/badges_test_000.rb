@@ -3,7 +3,7 @@
 
 require 'minitest/autorun'
 require 'minitest/rg'
-require './badges.rb'
+require './lib/codebadges.rb'
 
 badge = {
   'Sorting Your Friends' => 'May 18, 2014',
@@ -26,7 +26,7 @@ badge = {
 describe "Get all the badges" do
 
   before do
-    @badges_found = CodecademyBadges.get_badges('soumya.ray')
+    @badges_found = CodeBadges::CodecademyBadges.get_badges('soumya.ray')
   end
 
   it 'has the right number of badges' do
@@ -34,19 +34,19 @@ describe "Get all the badges" do
   end
 
   it 'finds "Sorting Your Friends" badge' do
-    @badges_found['Sorting Your Friends'].must_equal badge['Sorting Your Friends']
+    @badges_found['Sorting Your Friends'].must_equal Date.parse(badge['Sorting Your Friends'])
   end
 
   it 'finds "100 Exercises" badge' do
-    @badges_found['100 Exercises'].must_equal badge['100 Exercises']
+    @badges_found['100 Exercises'].must_equal Date.parse(badge['100 Exercises'])
   end
 
   it 'finds "Max Streak Count of 3" badge' do
-    @badges_found['Max Streak Count of 3'].must_equal badge['Max Streak Count of 3']
+    @badges_found['Max Streak Count of 3'].must_equal Date.parse(badge['Max Streak Count of 3'])
   end
 
   it 'finds "Design a Button for Your Website" badge' do
-    @badges_found['Design a Button for Your Website'].must_equal badge['Design a Button for Your Website']
+    @badges_found['Design a Button for Your Website'].must_equal Date.parse(badge['Design a Button for Your Website'])
   end
 
   # TODO: make writing these tests easier and running these tests faster!
