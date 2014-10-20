@@ -39,6 +39,7 @@ badges_from_file = {
     'First Lesson' => 'Jun 20, 2012'
   },
   'chenlizhan' => {
+    'Animate Your Name' => 'Sep 26, 2014',
     'Banking on Ruby' => 'Aug 25, 2014',
     'Object-Oriented Programming II' => 'Aug 25, 2014',
     'Virtual Computer' => 'Aug 25, 2014',
