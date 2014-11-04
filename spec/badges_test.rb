@@ -100,33 +100,16 @@ badges_from_file = {
 }
 
 badges_found = CodeBadges::CodecademyBadges.get_badges('soumya.ray')
-users_badges_found = CodeBadges::Academy.get_cadets(['chenlizhan', 'soumya.ray'])
 
 describe 'Get badges for one user' do
 
   it 'has the right number of badges' do
-    badges_found.size.must_equal badge.size
+    badges_found.size.wont_be :<, badge.size
   end
 
   badge.map do |b_name, b_date|
     it "finds '#{b_name}' badge" do
       badges_found[b_name].must_equal Date.parse(b_date)
-    end
-  end
-end
-
-describe 'Get badges from multiple users' do
-  it 'has the right number of badges for each users' do
-    users_badges_found.each do |user, badges|
-      badges.size.must_equal badges_from_file[user].size
-    end
-  end
-
-  badges_from_file.map do |user, badges|
-    badges.map do |b_name, b_date|
-      it "finds '#{b_name}' badge from '#{user}'" do
-        users_badges_found[user][b_name].must_equal Date.parse(b_date)
-      end
     end
   end
 end
