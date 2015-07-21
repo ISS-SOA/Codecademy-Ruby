@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name        =  'codebadges'
   s.version     =  CodeBadges::VERSION
   s.executables << 'codebadges'
-  s.date        =  '2014-09-03'
+  s.date        =  '2015-07-21'
   s.summary     =  'Grab the badges information from the Codecademy'
   s.description =  'Use username as an input, automatically give you the badges the user has.'
   s.authors     =  ['Lee Chen', 'Soumya Ray']
