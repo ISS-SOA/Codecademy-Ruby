@@ -9,7 +9,7 @@ module CodeBadges
   class CodecademyBadges
     TITLE_XPATH = "//div[@class = 'grid-row']//h5[@class = 'margin-top--1']"
     DATE_XPATH  = "//small[@class = 'text--ellipsis']"
-    USERS_URL = 'http://www.codecademy.com/users'
+    USERS_URL = 'https://www.codecademy.com/users'
     ACHIEVEMENTS_DIR = 'achievements'
 
     def self.get_badges(username)
