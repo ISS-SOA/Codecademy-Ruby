@@ -1,8 +1,7 @@
 require 'oga'
 require 'open-uri'
 require 'date'
-# Author:   Lee Chen (mailto: chung1350@hotmail.com)
-# License:  MIT
+
 module CodeBadges
   # This class get the user account as an input
   # return a hash of user's badges information
