@@ -1,4 +1,5 @@
-require 'nokogiri'
+#require 'nokogiri'
+require 'oga'
 require 'open-uri'
 require 'date'
 # Author:   Lee Chen (mailto: chung1350@hotmail.com)
@@ -21,7 +22,8 @@ module CodeBadges
 
     def self.get_html(username)
       url = "#{USERS_URL}/#{username}/#{ACHIEVEMENTS_DIR}"
-      Nokogiri::HTML(open(url))
+      # Nokogiri::HTML(open(url))
+      Oga.parse_html(open(url))
     end
 
     def self.get_titles(document)
@@ -31,7 +33,7 @@ module CodeBadges
 
     def self.get_dates(document)
       dates = document.xpath(DATE_XPATH)
-      dates.map { |d| Date.parse(d) }
+      dates.map { |d| Date.parse(d.children.text) }
     end
 
     def self.integrate(titles, dates)
