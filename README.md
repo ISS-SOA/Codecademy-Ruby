@@ -1,24 +1,31 @@
-CodeBadges
-===============
+# CodeBadges
 
-CodeBadges. It tries to grabs some information on the Codecademy. What it grab? Badges!
+Codecademy is a great place to learn coding! Unfortunately, Codecademy's website
+doesn't provide an API to help us monitor our own coding.
+So we made the CodeBadges gem to scrape user achievements from Codecademy!
 
-## About
-
-Once you done a section of course on the Codecademy(The online programming tutorial), you will get a badges.
-The gem is to understand that what course and the level the user take on the Codecademy.
+Note that we respect Codecademy's `robots.txt`
 
 ## Usage
 
 Install it with the following command:
-````ruby
-gem install codebadges
-````
+```
+$ gem install codebadges
+```
 
-Then in your file:
+Or else put it in your `Gemfile` as:
+```ruby
+gem codebadges
+```
+
+Run it from the command line. For example, to get the achievements of user `chenlizhan`:
+```
+$ codebadges chenlizhan
+```
+
+Or use it from your Ruby code:
 ````ruby
 require "codebadges"
-CodecademyBadges.get_badges(username)
-````
-The argument username is the user's account who you want to check it out!
+lee = CodeBadges::CodecademyBadges.new('chenlizhan')
+badges = lee.badges
 ````
