@@ -3,6 +3,6 @@ require 'rake/testtask'
 task :default => [:spec]
 
 desc 'Run specs'
-task :spec do
-  sh 'ruby -I lib spec/badges_spec.rb'
+Rake::TestTask.new(name=:spec) do |t|
+  t.pattern = 'spec/*_spec.rb'
 end
