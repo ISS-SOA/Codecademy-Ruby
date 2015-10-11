@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors     =  ['Lee Chen', 'Soumya Ray']
   s.email       =  ['chung1350@hotmail.com', 'soumya.ray@gmail.com']
   s.files       =  `git ls-files`.split("\n")
-  s.test_files  =  `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.test_files  =  `git ls-files spec/*`.split("\n")
   s.homepage    =  'https://github.com/ISS-SOA/Codecademy-Ruby'
   s.license     =  'MIT'
 

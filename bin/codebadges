@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-# require '../lib/codebadges/badges.rb'     # for cmd line testing purposes
 require 'codebadges'                       # for production
+# require '../lib/codebadges/badges.rb'     # for cmd line testing purposes
 
 def get_users_array_from_file(file)
   users_array = []

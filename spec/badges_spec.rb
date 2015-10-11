@@ -6,10 +6,10 @@ require 'webmock/minitest'
 require './lib/codebadges.rb'
 
 USERNAME = 'soumya.ray'
-badges_from_file = YAML.load(File.read('./spec/testfiles/badges.yml'))
+badges_from_file = YAML.load(File.read('./spec/fixtures/badges.yml'))
 
 VCR.configure do |config|
-  config.cassette_library_dir = 'fixtures/vcr_cassettes'
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
 end
 

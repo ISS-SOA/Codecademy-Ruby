@@ -5,10 +5,10 @@ require 'vcr'
 require 'webmock/minitest'
 require './lib/codebadges.rb'
 
-test_courses = YAML.load(File.read('spec/testfiles/courses.yml'))
+test_courses = YAML.load(File.read('spec/fixtures/courses.yml'))
 
 VCR.configure do |config|
-  config.cassette_library_dir = 'fixtures/vcr_cassettes'
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
 end
 
