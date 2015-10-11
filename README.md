@@ -1,4 +1,4 @@
-# CodeBadges
+# CodeBadges [![Build Status](https://travis-ci.org/ISS-SOA/Codecademy-Ruby.svg?branch=develop)](https://travis-ci.org/ISS-SOA/Codecademy-Ruby)
 
 Codecademy is a great place to learn coding! Unfortunately, Codecademy's website
 doesn't provide an API to help us monitor our own coding.
@@ -9,7 +9,7 @@ Note that we respect Codecademy's `robots.txt`
 ## Usage
 
 Install it with the following command:
-```
+```sh
 $ gem install codebadges
 ```
 
@@ -25,7 +25,7 @@ $ codebadges chenlizhan
 
 Or use it from your Ruby code:
 ````ruby
-require "codebadges"
+require 'codebadges'
 lee = CodeBadges::CodecademyBadges.new('chenlizhan')
 badges = lee.badges
 ````
