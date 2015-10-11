@@ -1,11 +1,11 @@
-$LOAD_PATH.push File.expand_path("../lib", __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
 require 'codebadges/version'
 
 Gem::Specification.new do |s|
   s.name        =  'codebadges'
   s.version     =  CodeBadges::VERSION
+  s.date        =  CodeBadges::DATE
   s.executables << 'codebadges'
-  s.date        =  '2015-10-08'
   s.summary     =  'Access user and course information on Codecademy'
   s.description =  'Get user achievements and course info from Codecademy'
   s.authors     =  ['Lee Chen', 'Soumya Ray']
