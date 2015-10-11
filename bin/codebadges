@@ -3,41 +3,12 @@
 require 'codebadges'                       # for production
 # require '../lib/codebadges/badges.rb'     # for cmd line testing purposes
 
-def get_users_array_from_file(file)
-  users_array = []
+fail ArgumentError, "Usage:  codebadges [username]\n" if ARGV.count == 0
 
-  File.open(file, 'r') do |f|
-    f.each_line.map do |line|
-      next if line.chomp.empty?
-      users_array.push(line.gsub("\n", ''))
-    end
-  end
+username = ARGV[0]
+badges_found = CodeBadges::CodecademyBadges.new(username).badges
 
-  users_array
-end
-
-type = ['txt']
-fail ArgumentError, "Usage:  badges [username/file]\n" if ARGV.count == 0
-if type.include? ARGV[0].split('.').last
-  users_array = get_users_array_from_file(ARGV[0])
-
-  badges_found_from_file = CodeBadges::Academy.get_cadets(users_array)
-
-  badges_found_from_file.each_with_index do |(k, v), _|
-    puts "#{k} has collected #{v.size} badges."
-    v.each do |title, date|
-      puts "Earned '#{title}' on #{date}."
-    end
-    puts "\n"
-  end
-else
-  user_name = ARGV[0]
-
-  badges_found = CodeBadges::CodecademyBadges.get_badges(user_name)
-
-  puts "#{user_name} has collected #{badges_found.size} badges."
-
-  badges_found.each do |title, date|
-    puts "Earned '#{title}' on #{date}."
-  end
+puts "#{username} has collected #{badges_found.size} badges."
+badges_found.each do |title, date|
+  puts "Earned '#{title}' on #{date}."
 end

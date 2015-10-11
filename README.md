@@ -1,4 +1,4 @@
-# CodeBadges [![Build Status](https://travis-ci.org/ISS-SOA/Codecademy-Ruby.svg?branch=develop)](https://travis-ci.org/ISS-SOA/Codecademy-Ruby)
+# CodeBadges [![Gem Version](https://badge.fury.io/rb/codebadges.svg)](https://badge.fury.io/rb/codebadges)[![Build Status](https://travis-ci.org/ISS-SOA/Codecademy-Ruby.svg?branch=develop)](https://travis-ci.org/ISS-SOA/Codecademy-Ruby)
 
 Codecademy is a great place to learn coding! Unfortunately, Codecademy's website
 doesn't provide an API to help us monitor our own coding.
