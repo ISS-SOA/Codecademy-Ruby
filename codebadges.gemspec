@@ -1,13 +1,13 @@
-$:.push File.expand_path("../lib", __FILE__)
+$LOAD_PATH.push File.expand_path("../lib", __FILE__)
 require 'codebadges/version'
 
 Gem::Specification.new do |s|
   s.name        =  'codebadges'
   s.version     =  CodeBadges::VERSION
   s.executables << 'codebadges'
-  s.date        =  '2015-07-21'
-  s.summary     =  'Grab the badges information from the Codecademy'
-  s.description =  "Takes username and returns user's badges (with dates)"
+  s.date        =  '2015-10-08'
+  s.summary     =  'Access user and course information on Codecademy'
+  s.description =  'Get user achievements and course info from Codecademy'
   s.authors     =  ['Lee Chen', 'Soumya Ray']
   s.email       =  ['chung1350@hotmail.com', 'soumya.ray@gmail.com']
   s.files       =  `git ls-files`.split("\n")
