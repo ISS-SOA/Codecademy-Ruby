@@ -1,4 +1,6 @@
 require 'oga'
+require 'headless'
+require 'watir-webdriver'
 require 'open-uri'
 require 'date'
 
@@ -12,20 +14,34 @@ module CodeBadges
     ACH_TITLE_XPATH = 'h5'
     ACH_DATE_XPATH = 'small/small'
 
-    def initialize(username)
-      parse_html(username)
+    def initialize(username, password)
+      @username = username
+      @password = password
     end
 
-    def badges
+    def badges_found
       @badges ||= extract_achievements
     end
 
-    private
+    def get_cadet_badges(cadet)
+      headless = Headless.new
+      browser = Watir::Browser.new
+      browser.goto('https://www.codecademy.com/login')
 
-    def parse_html(username)
-      url = "#{USERS_URL}/#{username}/#{ACHIEVEMENTS_DIR}"
-      @document = Oga.parse_html(open(url))
+      browser.text_field(id: 'user_login').set(@username)
+      browser.text_field(id: 'user_password').set(@password)
+      browser.button(id: 'user_submit').click
+      url = "#{USERS_URL}/#{cadet}/#{ACHIEVEMENTS_DIR}"
+      browser.goto(url)
+
+      @document = Oga.parse_html(browser.html)
+      browser.close
+      headless.destroy
+
+      badges_found
     end
+
+    private
 
     def extract_achievements
       @document.xpath(ACHIEVEMENT_XPATH).map do |achievement|
@@ -36,22 +52,3 @@ module CodeBadges
     end
   end
 end
-
-# require 'oga'
-# require 'headless'
-# require 'watir-webdriver'
-#
-# def browser_test
-#   headless = Headless.new
-#   browser = Watir::Browser.new
-#   browser.goto('https://www.codecademy.com/login')
-#   browser.text_field(id: 'user_login').set('soumya.ray')
-#   browser.text_field(id: 'user_password').set('code5w7r0y')
-#   browser.button(id: 'user_submit').click
-#   browser.goto('https://www.codecademy.com/users/soumya.ray/achievements')
-#
-#   @document = Oga.parse_html(browser.html)
-#
-#   browser.close
-#   headless.destroy
-# end

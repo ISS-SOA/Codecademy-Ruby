@@ -1,12 +1,14 @@
 require 'minitest/autorun'
 require 'minitest/rg'
 require 'yaml'
-require './lib/codebadges.rb'
+require './lib/codebadges/badges.rb'
 
 USERNAME = 'soumya.ray'
 badges_from_file = YAML.load(File.read('./spec/fixtures/badges.yml'))
 
-badges_found = CodeBadges::CodecademyBadges.new(USERNAME).badges
+cademy = CodeBadges::CodecademyBadges.new('soumya.ray', 'code5w7r0y')
+badges_found = cademy.get_cadet_badges('soumya.ray')
+
 
 describe 'Get badges for one user' do
   it 'has the right number of badges' do
