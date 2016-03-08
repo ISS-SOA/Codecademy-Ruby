@@ -23,6 +23,7 @@ module CodeBadges
       @badges ||= extract_achievements
     end
 
+    # TODO: accept list of cadets, and yield after scraping each one
     def get_cadet_badges(cadet)
       headless = Headless.new
       browser = Watir::Browser.new

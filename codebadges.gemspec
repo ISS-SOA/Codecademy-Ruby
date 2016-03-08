@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.date        =  CodeBadges::DATE
   s.executables << 'codebadges'
   s.summary     =  'Access user and course information on Codecademy'
-  s.description =  'Get user achievements and course info from Codecademy'
-  s.authors     =  ['Lee Chen', 'Soumya Ray']
-  s.email       =  ['chung1350@hotmail.com', 'soumya.ray@gmail.com']
+  s.description =  'Get user user achievements and course lists from Codecademy'
+  s.authors     =  ['Soumya Ray', 'Lee Chen']
+  s.email       =  ['soumya.ray@gmail.com', 'chung1350@hotmail.com']
   s.files       =  `git ls-files`.split("\n")
   s.test_files  =  `git ls-files spec/*`.split("\n")
   s.homepage    =  'https://github.com/ISS-SOA/Codecademy-Ruby'
