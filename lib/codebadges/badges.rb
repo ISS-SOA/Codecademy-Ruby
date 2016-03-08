@@ -36,3 +36,22 @@ module CodeBadges
     end
   end
 end
+
+# require 'oga'
+# require 'headless'
+# require 'watir-webdriver'
+#
+# def browser_test
+#   headless = Headless.new
+#   browser = Watir::Browser.new
+#   browser.goto('https://www.codecademy.com/login')
+#   browser.text_field(id: 'user_login').set('soumya.ray')
+#   browser.text_field(id: 'user_password').set('code5w7r0y')
+#   browser.button(id: 'user_submit').click
+#   browser.goto('https://www.codecademy.com/users/soumya.ray/achievements')
+#
+#   @document = Oga.parse_html(browser.html)
+#
+#   browser.close
+#   headless.destroy
+# end
