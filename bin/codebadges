@@ -1,14 +1,22 @@
 #!/usr/bin/env ruby
 
-require 'codebadges'                       # for production
-# require '../lib/codebadges/badges.rb'     # for cmd line testing purposes
+require 'io/console'
+require 'codebadges' # for production
+# require '../lib/codebadges/badges.rb' # for cmd line testing purposes
 
-fail ArgumentError, "Usage:  codebadges [username]\n" if ARGV.count == 0
+abort "Usage:  codebadges [username]\n" if ARGV.count == 0
 
-username = ARGV[0]
-badges_found = CodeBadges::CodecademyBadges.new(username).badges
+print 'Login Username: '
+username = STDIN.gets.chomp
 
-puts "#{username} has collected #{badges_found.size} badges."
+print 'Login Password: '
+password = STDIN.noecho(&:gets).chomp
+
+cadet_name = ARGV[0]
+cademy = CodeBadges::CodecademyBadges.new(username, password)
+badges_found = cademy.get_cadet_badges(cadet_name)
+
+puts "#{cadet_name} has collected #{badges_found.size} badges."
 badges_found.each do |title, date|
   puts "Earned '#{title}' on #{date}."
 end

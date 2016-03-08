@@ -6,8 +6,8 @@ module CodeBadges
   # This class get the user account as an input
   # return a hash of user's badges information
   class CodecademyCourses
-    MAIN_URL = 'https://www.codecademy.com'
-    XPATH_COURSES = "//div[h5/strong/text()='Learn To Code']/div/div/ul/li/a"
+    MAIN_URL = 'https://www.codecademy.com'.freeze
+    XPATH_COURSES = "//div[h5/strong/text()='Learn To Code']/div/div/ul/li/a".freeze
 
     def courses
       @courses ||= extract_main_courses
