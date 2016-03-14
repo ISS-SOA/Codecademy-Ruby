@@ -1,5 +1,5 @@
 # Versioning
 module CodeBadges
-  VERSION = '2.0.1'
-  DATE = '2015-10-11'
+  VERSION = '3.0.0'
+  DATE = '2016-03-08'
 end

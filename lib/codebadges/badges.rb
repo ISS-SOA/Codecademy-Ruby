@@ -1,4 +1,6 @@
 require 'oga'
+require 'headless'
+require 'watir-webdriver'
 require 'open-uri'
 require 'date'
 
@@ -12,20 +14,35 @@ module CodeBadges
     ACH_TITLE_XPATH = 'h5'
     ACH_DATE_XPATH = 'small/small'
 
-    def initialize(username)
-      parse_html(username)
+    def initialize(username, password)
+      @username = username
+      @password = password
     end
 
-    def badges
+    def badges_found
       @badges ||= extract_achievements
     end
 
-    private
+    # TODO: accept list of cadets, and yield after scraping each one
+    def get_cadet_badges(cadet)
+      headless = Headless.new
+      browser = Watir::Browser.new
+      browser.goto('https://www.codecademy.com/login')
 
-    def parse_html(username)
-      url = "#{USERS_URL}/#{username}/#{ACHIEVEMENTS_DIR}"
-      @document = Oga.parse_html(open(url))
+      browser.text_field(id: 'user_login').set(@username)
+      browser.text_field(id: 'user_password').set(@password)
+      browser.button(id: 'user_submit').click
+      url = "#{USERS_URL}/#{cadet}/#{ACHIEVEMENTS_DIR}"
+      browser.goto(url)
+
+      @document = Oga.parse_html(browser.html)
+      browser.close
+      headless.destroy
+
+      badges_found
     end
+
+    private
 
     def extract_achievements
       @document.xpath(ACHIEVEMENT_XPATH).map do |achievement|
