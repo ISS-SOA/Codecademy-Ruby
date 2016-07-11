@@ -7,7 +7,7 @@ require 'date'
 module CodeBadges
   # This class get the user account as an input
   # return a hash of user's badges information
-  class CodecademyBadges
+  class GetCodecademyBadges
     USERS_URL = 'https://www.codecademy.com/users'.freeze
     ACHIEVEMENTS_DIR = 'achievements'.freeze
     ACHIEVEMENT_XPATH = "//div[contains(@class,'achievement-card')]".freeze
@@ -19,7 +19,7 @@ module CodeBadges
       @password = password
     end
 
-    def get_cadet_badges(cadet)
+    def call(cadet)
       open_browser
       @browser.goto('https://www.codecademy.com/login')
 

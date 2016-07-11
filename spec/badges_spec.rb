@@ -7,8 +7,8 @@ USERNAME = 'soumya.ray'.freeze
 badges_from_file = YAML.load(File.read('./spec/fixtures/badges.yml'))
 
 describe 'Get badges for one cadet' do
-  cademy = CodeBadges::CodecademyBadges.new(ENV['CC_USERNAME'], ENV['CC_PASSWORD'])
-  badges_found = cademy.get_cadet_badges('soumya.ray')
+  cademy = CodeBadges::GetCodecademyBadges.new(ENV['CC_USERNAME'], ENV['CC_PASSWORD'])
+  badges_found = cademy.call('soumya.ray')
 
   it 'has the right number of badges' do
     badges_found.size.wont_be :<, badges_from_file[USERNAME].size

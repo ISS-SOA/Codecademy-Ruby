@@ -13,8 +13,8 @@ print 'Login Password: '
 password = STDIN.noecho(&:gets).chomp
 
 cadet_name = ARGV[0]
-cademy = CodeBadges::CodecademyBadges.new(username, password)
-badges_found = cademy.get_cadet_badges(cadet_name)
+cademy = CodeBadges::GetCodecademyBadges.new(username, password)
+badges_found = cademy.call(cadet_name)
 
 puts "#{cadet_name} has collected #{badges_found.size} badges."
 badges_found.each do |title, date|

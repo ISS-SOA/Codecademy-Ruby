@@ -34,15 +34,15 @@ Or, use it from your Ruby code:
 ````ruby
 require 'codebadges'
 
-cademy_badges = CodeBadges::CodecademyBadges.new('my_username', 'my_password')
-badges = cademy_badges.get_cadet_badges('chenlizhan')
+cademy_badges = CodeBadges::GetCodecademyBadges.new('my_username', 'my_password')
+badges = cademy_badges.call('chenlizhan')
 ````
 
 ### Finding full course list
 Use it from your Ruby code:
 ```ruby
-cademy_courses = CodeBadges::CodecademyCourses.new
-courses = cademy_courses.courses
+cademy_courses = CodeBadges::GetCodecademyCourses.new
+courses = cademy_courses.call
 ```
 
 ## Testing
