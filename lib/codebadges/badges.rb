@@ -1,6 +1,6 @@
 require 'oga'
-require 'headless'
 require 'watir-webdriver'
+require 'headless'
 require 'open-uri'
 require 'date'
 
