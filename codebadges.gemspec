@@ -18,6 +18,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'minitest-rg'
   s.add_runtime_dependency 'oga'
-  s.add_runtime_dependency 'watir-webdriver'
-  s.add_runtime_dependency 'headless'
+  s.add_runtime_dependency 'mechanize'
 end
