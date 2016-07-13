@@ -1,25 +1,15 @@
-require 'oga'
-require 'open-uri'
-require 'date'
+require_relative 'site'
 
 module CodeBadges
-  # This class get the user account as an input
-  # return a hash of user's badges information
+  # Service object class that returns all courses
   class GetCodecademyCourses
-    MAIN_URL = 'https://www.codecademy.com'.freeze
-    XPATH_COURSES = "//div[h5/strong/text()='Learn To Code']/div/div/ul/li/a".freeze
+    def self.call
+      CademySite.new do |site|
+        site.goto CademySite::MAIN_URL
+        @courses = site.extract_main_courses
+      end
 
-    def call
-      @courses ||= extract_main_courses
-    end
-
-    private
-
-    def extract_main_courses
-      doc = Oga.parse_html(open(MAIN_URL))
-      doc.xpath(XPATH_COURSES).map do |course|
-        [course.text, URI.join(MAIN_URL, course.get('href'))]
-      end.to_h
+      @courses
     end
   end
 end

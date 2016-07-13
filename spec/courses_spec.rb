@@ -5,8 +5,7 @@ require './lib/codebadges.rb'
 
 test_courses = YAML.load(File.read('spec/fixtures/courses.yml'))
 
-codecademy = CodeBadges::GetCodecademyCourses.new
-courses = codecademy.call
+courses = CodeBadges::GetCodecademyCourses.call
 
 describe 'Find all test courses' do
   it 'has the right number of badges' do
@@ -15,7 +14,7 @@ describe 'Find all test courses' do
 
   test_courses.map do |course_name|
     it "finds course '#{course_name}'" do
-      codecademy.call.keys.include? course_name
+      courses.keys.include? course_name
     end
   end
 end
