@@ -1,6 +1,4 @@
-require 'oga'
-require 'watir-webdriver'
-require 'headless'
+require 'mechanize'
 require 'date'
 
 module CodeBadges
@@ -22,11 +20,11 @@ module CodeBadges
     COURSES_XPATH = "//div[h5/strong/text()='Learn To Code']/div/div/ul/li/a".freeze
 
     def initialize
-      return unless block_given?
+      @browser = Mechanize.new do |agent|
+        agent.user_agent_alias = 'Linux Firefox'
+      end
 
-      open_browser
-      yield self
-      close_browser
+      yield self if block_given?
     end
 
     def self.cadet_achievements_url(cadet)
@@ -34,28 +32,19 @@ module CodeBadges
     end
 
     def goto(url)
-      @browser.goto(url)
-    end
-
-    def open_browser
-      @headless ||= Headless.new
-      @browser ||= Watir::Browser.new(:firefox)
-    end
-
-    def close_browser
-      @browser.close
-      @headless.destroy
+      @browser.get(url)
     end
 
     def login(username, password)
-      @browser.text_field(id: USERNAME_TEXTFIELD_ID).set(username)
-      @browser.text_field(id: PASSWORD_TEXTFIELD_ID).set(password)
-      @browser.button(id: LOGIN_BUTTON_ID).click
+      @browser.page.form do |form|
+        form.field(id: USERNAME_TEXTFIELD_ID).value = username
+        form.field(id: PASSWORD_TEXTFIELD_ID).value = password
+        form.submit
+      end
     end
 
     def extract_achievements
-      document = Oga.parse_html(@browser.html)
-      document.xpath(ACHIEVEMENT_XPATH).map do |achievement|
+      @browser.page.xpath(ACHIEVEMENT_XPATH).map do |achievement|
         title = achievement.xpath(ACH_TITLE_XPATH).text
         date = Date.parse(achievement.xpath(ACH_DATE_XPATH).text)
         [title, date]
@@ -63,9 +52,8 @@ module CodeBadges
     end
 
     def extract_main_courses
-      doc = Oga.parse_html(@browser.html)
-      doc.xpath(COURSES_XPATH).map do |course|
-        [course.text, URI.join(MAIN_URL, course.get('href'))]
+      @browser.page.xpath(COURSES_XPATH).map do |course|
+        [course.text, URI.join(MAIN_URL, course.attribute('href').value)]
       end.to_h
     end
   end
