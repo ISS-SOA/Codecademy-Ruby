@@ -22,15 +22,16 @@ and run `bundle install`.
 
 ## Usage
 
-### Finding user badges
+### CLI: Finding user badges
 Run it from the command line. For example, to get the achievements of user `chenlizhan`:
 ```
 $ codebadges chenlizhan
 ```
 
-You will be required to enter username/password credentials to access codecademy. This gem *never* stores your credentials nor uses them for any other purpose.
-
-Or, use it from your Ruby code:
+You will be required to enter username/password credentials to access codecademy user achievements.
+This gem *never* stores your credentials nor uses them for any other purpose.
+### Code: Finding user badges
+Use it from your Ruby code:
 ````ruby
 require 'codebadges'
 
@@ -38,11 +39,10 @@ cademy_badges = CodeBadges::GetCodecademyBadges.new('my_username', 'my_password'
 badges = cademy_badges.call('chenlizhan')
 ````
 
-### Finding full course list
+### Code: Finding full course list
 Use it from your Ruby code:
 ```ruby
-cademy_courses = CodeBadges::GetCodecademyCourses.new
-courses = cademy_courses.call
+courses = CodeBadges::GetCodecademyCourses.call
 ```
 
 ## Testing
@@ -52,4 +52,9 @@ First, setup environment variables called `CC_USERNAME` and `CC_PASSWORD` with y
 Then:
 ```
 rake spec
+```
+
+Alternatively:
+```
+CC_USERNAME=myusername CC_PASSWORD=mypassword rake spec
 ```
